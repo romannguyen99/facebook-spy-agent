@@ -87,11 +87,11 @@ st.markdown("Enter a competitor's Facebook Page URL to generate a analysis:")
 
 # Input Section
 with st.form("analysis_form"):
-    col1, col2 = st.columns([3, 1])
+    col1, col2 = st.columns([4, 1], vertical_alignment="bottom")
     with col1:
         url_input = st.text_input("Competitor URL", placeholder="https://www.facebook.com/brandname")
     with col2:
-        submitted = st.form_submit_button("🚀 Go!", type="primary", use_container_width=True, vertical_alignment="bottom")
+        submitted = st.form_submit_button("🚀 Go!", type="primary", use_container_width=True)
 
 # --- ANALYSIS LOGIC ---
 if submitted and url_input:

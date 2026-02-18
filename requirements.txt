@@ -1,0 +1,8 @@
+dotenv
+streamlit
+apify_client
+pandas
+numpy
+openpyxl
+langchain
+langchain_google_genai

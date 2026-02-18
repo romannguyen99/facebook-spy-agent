@@ -1,0 +1,22 @@
+# --- Security & Secrets ---
+.env
+.env.local
+config.py
+
+# --- Python System Files ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual Environments ---
+.venv/
+venv/
+env/
+
+# --- OS System Files ---
+.DS_Store
+Thumbs.db
+
+# --- Data/Runtime Files ---
+history.json
+*.log

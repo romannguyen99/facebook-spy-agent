@@ -128,7 +128,7 @@ if submitted and url_input:
             st.write(f"1. 🔎 I am searching posts from {competitor_name}...")
             scraper = FacebookScraper()
             # Max posts = 5 for speed. Increase to 10-20 for production.
-            posts = scraper.scrape(url_input, max_posts=5)
+            posts = scraper.scrape(url_input, max_posts=post_count, start_date=start_date, end_date=end_date)
             
             if not posts:
                 status.update(label="Error: No data found", state="error")

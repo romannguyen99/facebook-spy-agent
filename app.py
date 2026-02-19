@@ -1,8 +1,7 @@
 import streamlit as st
 import json
 import os
-from datetime import datetime
-import time
+from datetime import datetime, timedelta
 
 try:
     from scraper import FacebookScraper
@@ -14,7 +13,7 @@ except ImportError:
 history_file = "history.json"
 
 st.set_page_config(
-    page_title="FB post AI Spy",
+    page_title="Content analysis AI agent",
     page_icon="🕵️",
     layout="wide"
 )
@@ -82,7 +81,7 @@ with st.sidebar:
                 st.rerun()
 
 # --- MAIN PAGE ---
-st.title("🕵️ Competitor's posts AI analyst")
+st.title("🕵️ Facebook Content AI Analyst")
 st.markdown("Enter a competitor's Facebook Page URL to generate a analysis:")
 
 # Input Section
@@ -91,12 +90,37 @@ with st.form("analysis_form"):
     with col1:
         url_input = st.text_input("Competitor URL", placeholder="https://www.facebook.com/brandname")
     with col2:
-        submitted = st.form_submit_button("🚀 Go!", type="primary", use_container_width=True)
+        submitted = st.form_submit_button("Analyze page", type="primary", use_container_width=True)
+
+# --- ADVANCED OPTIONS ---
+with st.expander("⚙️ Advanced settings", expanded=False):
+    opt_col1, opt_col2 = st.columns(2)
+    
+    with opt_col1:
+        post_count = st.slider("Number of Posts (maximum 20 posts)", min_value=5, max_value=20, value=5)
+        
+    with opt_col2:
+        today = datetime.now().date()
+        last_month = today - timedelta(days=30)
+        date_range = st.date_input(
+            "Time Frame",
+            value=(last_month, today),
+            max_value=today,
+            format="DD/MM/YYYY"
+        )
 
 # --- ANALYSIS LOGIC ---
 if submitted and url_input:
     competitor_name = url_input.strip().split("/")[-1]
     
+    # Handle Date Range Input safely (Streamlit returns a tuple)
+    start_date, end_date = None, None
+    if isinstance(date_range, tuple) and len(date_range) == 2:
+        start_date, end_date = date_range
+    elif isinstance(date_range, tuple) and len(date_range) == 1:
+        st.warning("Please select both a Start Date and End Date.")
+        st.stop()
+
     # Use st.status for a nice progress log
     with st.status("🕵️ Agent Active!", expanded=True) as status:
         try:

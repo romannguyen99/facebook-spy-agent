@@ -109,7 +109,7 @@ class ContentAnalyzer:
         ---
 
         ### REPORT OUTPUT (Markdown):
-        Please generate the report in English and Vietnamese with the following structure:
+        Please generate 2 reports seperately in 2 languages (English and Vietnamese) with the following structure:
 
         ## 1. Page Overview
         - What is this page about?:

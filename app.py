@@ -97,7 +97,7 @@ with st.expander("⚙️ Advanced settings", expanded=False):
     opt_col1, opt_col2 = st.columns(2)
     
     with opt_col1:
-        post_count = st.slider("Number of Posts (maximum 20 posts)", min_value=5, max_value=20, value=5)
+        post_count = st.slider("Number of Posts", min_value=5, max_value=20, value=5)
         
     with opt_col2:
         today = datetime.now().date()
